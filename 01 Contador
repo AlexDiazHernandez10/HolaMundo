@@ -1,0 +1,41 @@
+package mx.edu.tecmm.moviles.holamundo
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val txtConteo = findViewById<TextView>(R.id.txtNumero)
+        val boton = findViewById<Button>(R.id.btnAumentar)
+        val btnlimpiar =findViewById<Button>(R.id.btnLimpiar)
+        var conteo:Int
+        var bandera=true
+        conteo = 0
+        boton.setOnClickListener{
+            if (conteo<10){
+                if(bandera) {
+                    conteo=conteo.inc()
+                }
+                else if (conteo> 0 && !bandera){
+                    conteo=conteo.dec()
+                }
+                if (conteo<1){bandera=true}
+            }
+            else if (conteo==10){
+                bandera=false;
+                conteo= conteo.dec()
+            }
+
+            txtConteo.text=conteo.toString()
+        }
+        btnlimpiar.setOnClickListener{
+            conteo =0
+           txtConteo.text=conteo.toString()
+        }
+
+}}
